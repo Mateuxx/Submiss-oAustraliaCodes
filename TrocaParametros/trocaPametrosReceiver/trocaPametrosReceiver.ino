@@ -1,5 +1,7 @@
 #include <RadioLib.h>
 #include <string.h>
+#include <Regexp.h>
+
 
 
 #define GPIO_BOTAO 46
@@ -10,6 +12,24 @@ char msg[251]; // Declaração do array de caracteres para a mensagem
 bool startsWith(const String &str, const String &prefix) {
     return str.substring(0, prefix.length()) == prefix;
 }
+
+
+void parser(String parametros){
+
+  MatchState ms;
+
+  ms.Target(parametros.c_str());
+
+    while (regex.Match(ms)) {
+      for (uint8_t i = 0; i < ms.level; i++) {
+        String match = String(ms.GetCapture(ms.level - 1 - i));
+        Serial.println(match);
+      }
+    }
+}
+
+
+
 
 void Receiver_TrocaParametros(){
   unsigned long period = 5000; // Tempo de espera em milissegundos
@@ -32,6 +52,9 @@ void Receiver_TrocaParametros(){
 void setup() {
   Serial.begin(115200);
   while(!Serial);
+
+  Regexp regex("\\d+\\.?\\d*");
+
 
    Serial.print(F("[SX1262] Initializing ... "));
   int state = radio.begin();
