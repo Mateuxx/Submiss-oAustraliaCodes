@@ -14,7 +14,6 @@ def plot_correlation(data):
     plt.show()
     #fig.savefig('corr.png')
 
-
 def pre_processamento():
     with open('send_experimento.log', 'r') as arquivo:
         dados = []
@@ -50,6 +49,7 @@ def readArquivo():
     for linha in df:
         print(linha+"OIEE")
     df.to_csv('logWoWMoM.csv', index=False)
+    return df
     '''
     df['PT'] = pd.to_numeric(df['PT'], errors='coerce')
     df['RSSI'] = pd.to_numeric(df['RSSI'], errors='coerce')
@@ -72,10 +72,23 @@ def readArquivo():
 
     '''
 
-
-
-
+SF =["7","8"]   
+BW = ["125.00","250.00","500.00"] 
+PT = ["14","17","20"]
 pre_processamento()
-readArquivo()
-   
-
+valor = readArquivo()
+valor.insert(6, "PRD", [0 for i in range(len(valor))], True)
+print(valor)
+for i in SF:
+    for j in BW:
+        for k in PT:
+            NewDf = valor.loc[(valor['SF'] == i) & (valor['BW'] == j) & (valor['PT'] == k)]#print(NewDf) 
+            print(len(NewDf))
+            if(len(NewDf)==0):
+                new_row = {'Hora': None, 'RSSI': None, 'SNR': None,'SF': i, 'BW': j, 'PT': k, 'PRD': 0}
+                valor = pd.concat([valor, pd.DataFrame([new_row])], ignore_index=True)
+                NewDf = valor.loc[(valor['SF'] == i) & (valor['BW'] == j) & (valor['PT'] == k)]
+                print("Tratou a parada!!!   ", len(NewDf))
+            else:
+                print("Não tratou a parada!!!   ", len(NewDf))
+                
