@@ -72,23 +72,55 @@ def readArquivo():
 
     '''
 
-SF =["7","8"]   
+
+alcir = []
+soma = 0
+PDR = 0
+SF =["7","8","9","10","11","12"]   
 BW = ["125.00","250.00","500.00"] 
-PT = ["14","17","20"]
+PT = ["10","12","14","16","20"]
 pre_processamento()
 valor = readArquivo()
 valor.insert(6, "PRD", [0 for i in range(len(valor))], True)
-print(valor)
+#print(valor)
 for i in SF:
     for j in BW:
         for k in PT:
+            soma = 0
+            media = 0
             NewDf = valor.loc[(valor['SF'] == i) & (valor['BW'] == j) & (valor['PT'] == k)]#print(NewDf) 
-            print(len(NewDf))
+            #print(len(NewDf))
             if(len(NewDf)==0):
                 new_row = {'Hora': None, 'RSSI': None, 'SNR': None,'SF': i, 'BW': j, 'PT': k, 'PRD': 0}
                 valor = pd.concat([valor, pd.DataFrame([new_row])], ignore_index=True)
                 NewDf = valor.loc[(valor['SF'] == i) & (valor['BW'] == j) & (valor['PT'] == k)]
-                print("Tratou a parada!!!   ", len(NewDf))
+                #print("Tratou a parada!!!   ", len(NewDf))
+                PDR = len(NewDf)
+                valor.loc[(valor['SF'] == i) & (valor['BW'] == j) & (valor['PT'] == k), 'PRD'] = PDR
+                print(i, j, k)
             else:
-                print("Não tratou a parada!!!   ", len(NewDf))
-                
+                #print("Não tratou a parada!!!   ", len(NewDf))
+                PDR = len(NewDf)
+                valor.loc[(valor['SF'] == i) & (valor['BW'] == j) & (valor['PT'] == k), 'PRD'] = PDR
+
+                #print("sexo" + valor.loc[(valor['SF'] == i) & (valor['BW'] == j) & (valor['PT'] == k), 'RSSI'])
+                somaRSSI = sum(pd.to_numeric(valor.loc[(valor['SF'] == i) & (valor['BW'] == j) & (valor['PT'] == k), 'RSSI']))
+                #print("Eh a soma ", soma)
+                #print(alcir)
+                mediaRSSI = somaRSSI/ PDR 
+
+                somaSNR = sum(pd.to_numeric(valor.loc[(valor['SF'] == i) & (valor['BW'] == j) & (valor['PT'] == k), 'SNR']))
+
+                mediaSNR = somaSNR/ PDR
+                valorR = 0.5*mediaRSSI+0.2*mediaSNR+0.3*PDR
+                print(i, j, k)
+                valor.loc[(valor['SF'] == i) & (valor['BW'] == j) & (valor['PT'] == k), 'R'] = valorR
+                print(valor.loc[(valor['SF'] == i) & (valor['BW'] == j) & (valor['PT'] == k), 'R'].iloc[0])
+
+#print(valor)
+#print(media)
+#print(alcir)
+#print(len(alcir))
+#print(media)
+# print("---------------VAlOR FINAl  DO DATAFRAME-----------------")
+# print(valor)
