@@ -91,10 +91,9 @@ for i in SF:
                 print("Tratou a parada!!!   ", len(NewDf))
                 PDR = len(NewDf)
                 valor.loc[(valor['SF'] == i) & (valor['BW'] == j) & (valor['PT'] == k), 'PRD'] = PDR
-
             else:
                 print("Não tratou a parada!!!   ", len(NewDf))
                 PDR = len(NewDf)
                 valor.loc[(valor['SF'] == i) & (valor['BW'] == j) & (valor['PT'] == k), 'PRD'] = PDR
-                print("---------------VAlOR FINAl  DO DATAFRAME-----------------")
-                print(valor)
+print("---------------VAlOR FINAl  DO DATAFRAME-----------------")
+print(valor)
