@@ -71,10 +71,10 @@ def readArquivo():
     plt.show()
 
     '''
-
-SF =["7","8"]   
+PDR = 0
+SF =["7","8","9","10","11","12"]   
 BW = ["125.00","250.00","500.00"] 
-PT = ["14","17","20"]
+PT = ["10","12","14","16","20"]
 pre_processamento()
 valor = readArquivo()
 valor.insert(6, "PRD", [0 for i in range(len(valor))], True)
@@ -89,6 +89,12 @@ for i in SF:
                 valor = pd.concat([valor, pd.DataFrame([new_row])], ignore_index=True)
                 NewDf = valor.loc[(valor['SF'] == i) & (valor['BW'] == j) & (valor['PT'] == k)]
                 print("Tratou a parada!!!   ", len(NewDf))
+                PDR = len(NewDf)
+                valor.loc[(valor['SF'] == i) & (valor['BW'] == j) & (valor['PT'] == k), 'PRD'] = PDR
+
             else:
                 print("Não tratou a parada!!!   ", len(NewDf))
-                
+                PDR = len(NewDf)
+                valor.loc[(valor['SF'] == i) & (valor['BW'] == j) & (valor['PT'] == k), 'PRD'] = PDR
+                print("---------------VAlOR FINAl  DO DATAFRAME-----------------")
+                print(valor)
