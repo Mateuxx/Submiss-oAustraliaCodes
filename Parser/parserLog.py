@@ -78,7 +78,7 @@ soma = 0
 PDR = 0
 SF =["7","8","9","10","11","12"]   
 BW = ["125.00","250.00","500.00"] 
-PT = ["10","12","14","16","20"]
+PT = ["10","12","14","16","18","20"]
 pre_processamento()
 valor = readArquivo()
 valor.insert(6, "PRD", [0 for i in range(len(valor))], True)
@@ -97,6 +97,7 @@ for i in SF:
                 #print("Tratou a parada!!!   ", len(NewDf))
                 PDR = len(NewDf)
                 valor.loc[(valor['SF'] == i) & (valor['BW'] == j) & (valor['PT'] == k), 'PRD'] = PDR
+                alcir.append(0)
                 print(i, j, k)
             else:
                 #print("Não tratou a parada!!!   ", len(NewDf))
@@ -115,12 +116,12 @@ for i in SF:
                 valorR = 0.5*mediaRSSI+0.2*mediaSNR+0.3*PDR
                 print(i, j, k)
                 valor.loc[(valor['SF'] == i) & (valor['BW'] == j) & (valor['PT'] == k), 'R'] = valorR
-                print(valor.loc[(valor['SF'] == i) & (valor['BW'] == j) & (valor['PT'] == k), 'R'].iloc[0])
+                alcir.append(valor.loc[(valor['SF'] == i) & (valor['BW'] == j) & (valor['PT'] == k), 'R'].iloc[0])
 
 #print(valor)
 #print(media)
-#print(alcir)
-#print(len(alcir))
+print(alcir)
+print(len(alcir))
 #print(media)
 # print("---------------VAlOR FINAl  DO DATAFRAME-----------------")
 # print(valor)
