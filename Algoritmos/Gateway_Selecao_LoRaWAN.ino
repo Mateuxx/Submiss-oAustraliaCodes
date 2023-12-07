@@ -177,7 +177,7 @@ int verificaParam(float vetor_RSSI[],float vetor_SNR[],int contador_perda){
   int tamanho = sizeof(vetor_RSSI) / sizeof(vetor_RSSI[0]);
   for(int i = 0; i < tamanho;i++){
     if(maiorSNR < vetor_SNR[i]){
-      maiorSNR = vetor_SNR[i];  
+      maiorSNR = vetor_SNR[i]+20;  
     }
   }
   
