@@ -225,12 +225,10 @@ int verificaParam(float vetor_RSSI[],float vetor_SNR[],int contador_perda){
 
   //Algoritmo-Buscador do parâmetro
   int sub;
-  int j;
-  for(int i = 0; i< 108;i++){
+  int i;
+  for(i = 0; i< 108;i++){
     if(vetor_Parametros[i].SF_v == valor_SF && vetor_Parametros[i].BW_v == valor_BW && vetor_Parametros[i].PT_v == valor_PT){
       sub = R - vetor_Parametros[i].R_v;
-      j = i;
-      i = 108;
       if(sub < 1 && sub > -1){
         return 0;
       }
@@ -239,13 +237,13 @@ int verificaParam(float vetor_RSSI[],float vetor_SNR[],int contador_perda){
   
   //Algoritmo Incremental
   if(sub > 1){
-    valor_SF = vetor_Parametros[j+1].SF_v;
-    valor_BW = vetor_Parametros[j+1].BW_v;
-    valor_PT = vetor_Parametros[j+1].PT_v;
+    valor_SF = vetor_Parametros[i+1].SF_v;
+    valor_BW = vetor_Parametros[i+1].BW_v;
+    valor_PT = vetor_Parametros[i+1].PT_v;
   }else{
-    valor_SF = vetor_Parametros[j-1].SF_v;
-    valor_BW = vetor_Parametros[j-1].BW_v;
-    valor_PT = vetor_Parametros[j-1].PT_v;
+    valor_SF = vetor_Parametros[i-1].SF_v;
+    valor_BW = vetor_Parametros[i-1].BW_v;
+    valor_PT = vetor_Parametros[i-1].PT_v;
   }
   return 1;
 }
