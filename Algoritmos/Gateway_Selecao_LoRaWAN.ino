@@ -213,9 +213,9 @@ int verificaParam(float vetor_RSSI[],float vetor_SNR[],int contador_perda){
         return 0;
       }
       if(valor_SF == 7){
-        valor_PT = vetor_params[posicao_vetor];
+        valor_PT = vetor_param[posicao_vetor];
       }else{
-        valor_SF = vetor_params[posicao_vetor];
+        valor_SF = vetor_param[posicao_vetor];
       }
       Nstep--;
     }else{
@@ -253,7 +253,7 @@ void setup() {
   }
   SetDefaultParam();
   Receiver_HandShake();
-  set_Params();
+  
 }
 
 void loop() {
