@@ -242,7 +242,7 @@ int verificaParam(float vetor_RSSI[],float vetor_SNR[],int contador_perda){
       Serial.println("Valor do R do dataBase: "+String(vetor_Parametros[i].R_v));
       j = i;
       i = 108;
-      if(sub < 1 && sub > -1){
+      if(sub < 5 && sub > -5){
         Serial.println("0");
         return 0;
       }
@@ -250,16 +250,16 @@ int verificaParam(float vetor_RSSI[],float vetor_SNR[],int contador_perda){
   }
   
   //Algoritmo Incremental
-  if(sub > 1){
+  if(sub > 5){
     valor_SF = vetor_Parametros[j+1].SF_v;
     valor_BW = vetor_Parametros[j+1].BW_v;
     valor_PT = vetor_Parametros[j+1].PT_v;
-    Serial.println("+1");
+    Serial.println("+5");
   }else{
     valor_SF = vetor_Parametros[j-1].SF_v;
     valor_BW = vetor_Parametros[j-1].BW_v;
     valor_PT = vetor_Parametros[j-1].PT_v;
-    Serial.println("-1");
+    Serial.println("-5");
   }
   return 1;
 }

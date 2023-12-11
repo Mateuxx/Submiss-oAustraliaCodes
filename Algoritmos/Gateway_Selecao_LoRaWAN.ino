@@ -23,7 +23,7 @@ int valor_PT = 20;
 
 String msg_ult;
 
-int posicao_vetor;
+int posicao_vetor = 10;
 int vetor_param[11] = {10,12,14,16,18,7,8,9,10,11,12};
 
 //Função para deixaros valores default SF=12;BW=125.0;PT=20
@@ -200,6 +200,7 @@ int verificaParam(float vetor_RSSI[],float vetor_SNR[],int contador_perda){
   float SNRmargin = maiorSNR - dr - margin;
 
   int Nstep = SNRmargin/2.5;
+  Serial.println("Nstep: "+String(Nstep));
   
   //Algoritmo LoRaWAN
   
@@ -210,6 +211,9 @@ int verificaParam(float vetor_RSSI[],float vetor_SNR[],int contador_perda){
      if(Nstep > 0){
       posicao_vetor--;
       if(posicao_vetor < 0){
+        Serial.println("SF: "+String(valor_SF));
+        Serial.println("PT: "+String(valor_PT));
+        Serial.println("return 01");
         return 0;
       }
       if(valor_SF == 7){
@@ -218,15 +222,24 @@ int verificaParam(float vetor_RSSI[],float vetor_SNR[],int contador_perda){
         valor_SF = vetor_param[posicao_vetor];
       }
       Nstep--;
+      //Serial.println("Step--");
     }else{
       if(valor_PT < 20){
           valor_PT += 2;
           Nstep++;
       }else{
+        //Serial.println("SF: "+String(valor_SF));
+        //Serial.println("PT: "+String(valor_PT));
+        Serial.println("return 02");
         return 0;
       }
     }
+    Serial.println("STEP: "+String(Nstep));
+    Serial.println("posVetor: "+String(posicao_vetor));
   }
+  Serial.println("SF: "+String(valor_SF));
+  Serial.println("PT: "+String(valor_PT));
+  Serial.println("return 03");
   return 1;
 }
 
@@ -242,7 +255,7 @@ void setup() {
   Heltec.display->drawString(33, 5, "Iniciado");
   Heltec.display->drawString(10, 30, "com Sucesso!");
   Heltec.display->display();
-  posicao_vetor = 10;
+
   int state = radio.begin();
   if (state == RADIOLIB_ERR_NONE) {
   } else {
@@ -253,7 +266,6 @@ void setup() {
   }
   SetDefaultParam();
   Receiver_HandShake();
-  
 }
 
 void loop() {
@@ -279,16 +291,19 @@ void loop() {
     if(currentMillis-startMillis >= periodo){
       break;
     }
+    if(state == RADIOLIB_ERR_NONE && str_read.equals("TERM")){
+      Serial.println("Recebeu TERM");
+      break;
+    }
     if(state == RADIOLIB_ERR_NONE){
     
       vetor_RSSI[contador] = radio.getRSSI();
       vetor_SNR[contador] = radio.getSNR();
       contador++;
+      Serial.println(str_read);
      
     }
-    if(state == RADIOLIB_ERR_NONE && str_read.equals("TERM")){
-      break;
-    }    
+        
   }
 
   SetDefaultParam();
@@ -304,7 +319,8 @@ void loop() {
     
     msg_volta += msg_ult; 
     radio.transmit(msg_volta);
-
+    Serial.print("Parametros ideais: ");
+    Serial.println(msg_ult);
     String* valores = Parser(msg_ult);
     changeParam(valores[0].toInt(),valores[1].toFloat(),valores[2].toInt());
     while(true){}
@@ -312,14 +328,13 @@ void loop() {
 
   String param_atual = String(getSF())+"/"+String(getBW())+"/"+String(getPT());
   
-
-  if(v_Verifica == 1){
-    radio.transmit(param_atual);
-    String* valores = Parser(param_atual);
-    changeParam(valores[0].toInt(),valores[1].toFloat(),valores[2].toInt());
-  }else{
-    radio.transmit("TRC_OK");
-    while(true);
-  }
+  String msg_volta = "OK_";
+  msg_volta += param_atual; 
+  radio.transmit(msg_volta);
+  Serial.print("Parametros ideais: ");
+  Serial.println(param_atual);
+  String* valores = Parser(param_atual);
+  changeParam(valores[0].toInt(),valores[1].toFloat(),valores[2].toInt());
+  while(true){}
   
 }

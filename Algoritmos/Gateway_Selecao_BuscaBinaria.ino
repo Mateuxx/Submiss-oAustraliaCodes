@@ -17,12 +17,12 @@ int Vetor_SF[] = {7,8,9,10,11,12}; //6
 float Vetor_BW[] = {125,250,500}; //3
 int Vetor_PT[] = {10,12,14,16,18,20}; //6
 
-int fim = 107;
-int inicio = 0;
-
 int valor_SF = 12;
 float valor_BW = 125.00;
 int valor_PT = 20;
+
+int inicio = 0;
+int fim = 108;
 
 String msg_ult;
 
@@ -43,7 +43,7 @@ float vetor_R[108] = {90.53571428571428, 91.30515463917526, 90.7471153846154, 91
                       91.327, 90.34100000000001, 90.6985, 90.1965, 90.15858585858585, 90.16900000000001, 90.319, 89.1785, 88.964, 89.26489898989898, 89.281, 89.5345, 89.1235, 90.29848484848485, 
                       90.85883838383839, 90.66377551020409, 90.63341836734693, 91.63575, 91.202, 90.8445, 91.44675000000001, 91.69375, 92.33225, 91.8935, 91.9345, 89.47368421052632, 91.23826530612246, 
                       89.94922680412371, 90.13005319148937, 90.44336734693877, 88.93376288659793};
-
+                      
 void bubbleSort(params_pacote arr[], int n) {
   for (int i = 0; i < n-1; i++) {
     for (int j = 0; j < n-i-1; j++) {
@@ -221,6 +221,7 @@ int getPT(){
   return valor_PT;
 }
 
+
 //Implementação dos algoritmos
 int verificaParam(float vetor_RSSI[],float vetor_SNR[],int contador_perda){
   float somaRSSI = 0;
@@ -248,17 +249,17 @@ int verificaParam(float vetor_RSSI[],float vetor_SNR[],int contador_perda){
   
   while(inicio<=fim){
     int intervalo_ideal = R - vetor_Parametros[j].R_v;
-    if(intervalo_ideal < 1 && intervalo_ideal > -1){
+    if(intervalo_ideal < 5 && intervalo_ideal > -5){
       Serial.println("0");
       return 0;
     }
-    if(intervalo_ideal > 1){
+    if(intervalo_ideal > 5){
       inicio = j + 1;
       int meio = (inicio+fim)/2;
       valor_SF = vetor_Parametros[meio].SF_v;
       valor_BW = vetor_Parametros[meio].BW_v;
       valor_PT = vetor_Parametros[meio].PT_v;
-      Serial.println("+1");
+      Serial.println("+5");
       return 1;    
     }else{
       fim = j-1;
@@ -266,7 +267,7 @@ int verificaParam(float vetor_RSSI[],float vetor_SNR[],int contador_perda){
       valor_SF = vetor_Parametros[meio].SF_v;
       valor_BW = vetor_Parametros[meio].BW_v;
       valor_PT = vetor_Parametros[meio].PT_v;
-      Serial.println("-1");
+      Serial.println("-5");
       return 1;       
     }
     
@@ -323,16 +324,19 @@ void loop() {
     if(currentMillis-startMillis >= periodo){
       break;
     }
+    if(state == RADIOLIB_ERR_NONE && str_read.equals("TERM")){
+      Serial.println("Recebeu TERM");
+      break;
+    }
     if(state == RADIOLIB_ERR_NONE){
     
       vetor_RSSI[contador] = radio.getRSSI();
       vetor_SNR[contador] = radio.getSNR();
       contador++;
+      Serial.println(str_read);
      
     }
-    if(state == RADIOLIB_ERR_NONE && str_read.equals("TERM")){
-      break;
-    }    
+        
   }
 
   SetDefaultParam();
@@ -345,11 +349,11 @@ void loop() {
 
   }else{
     String msg_volta = "OK_";
-    Serial.print("Parametros ideais: ");
-    Serial.println(msg_ult);
+    
     msg_volta += msg_ult; 
     radio.transmit(msg_volta);
-
+    Serial.print("Parametros ideais: ");
+    Serial.println(msg_ult);
     String* valores = Parser(msg_ult);
     changeParam(valores[0].toInt(),valores[1].toFloat(),valores[2].toInt());
     while(true){}
