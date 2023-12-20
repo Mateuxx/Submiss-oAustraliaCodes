@@ -123,90 +123,89 @@ valor.insert(6, "PRD", [0 for i in range(len(valor))], True)
 for i in SF:
     for j in BW:
         for k in PT:
-            for w in Distancia:
-                soma = 0
-                media = 0
-                NewDf = valor.loc[(valor['SF'] == i) & (valor['BW'] == j) & (valor['PT'] == k)]#print(NewDf) 
-                #print(len(NewDf))
-                if(len(NewDf)==0 or len(NewDf)==1):
+            soma = 0
+            media = 0
+            NewDf = valor.loc[(valor['SF'] == i) & (valor['BW'] == j) & (valor['PT'] == k)]#print(NewDf) 
+            #print(len(NewDf))
+            if(len(NewDf)==0 or len(NewDf)==1):
+                
+                new_row = {'Hora': None, 'RSSI': None, 'SNR': None,'SF': i, 'BW': j, 'PT': k, 'PRD': 0}
+                valor = pd.concat([valor, pd.DataFrame([new_row])], ignore_index=True)
+                NewDf = valor.loc[(valor['SF'] == i) & (valor['BW'] == j) & (valor['PT'] == k)]
+                print("Tratou a parada!!!   ", len(NewDf))
+                PDR = len(NewDf)
+                valor.loc[(valor['SF'] == i) & (valor['BW'] == j) & (valor['PT'] == k), 'PRD'] = PDR
+                valor.loc[(valor['SF'] == i) & (valor['BW'] == j) & (valor['PT'] == k), 'R'] = 0
+                #alcir.append(valor.loc[(valor['SF'] == i) & (valor['BW'] == j) & (valor['PT'] == k), 'R'].iloc[0])
+                #print(i, j, k, w)
+            else:
+                print(i, j, k)
+                #print("Não tratou a parada!!!   ", len(NewDf))
+                PDR = len(NewDf)
+                print("PDR: ",PDR)
+                valor.loc[(valor['SF'] == i) & (valor['BW'] == j) & (valor['PT'] == k), 'PRD'] = PDR
+
+
+                RSSIva = sum(pd.to_numeric(valor.loc[(valor['SF'] == i) & (valor['BW'] == j) & (valor['PT'] == k), 'RSSI']))
+                RSSImi = pd.to_numeric(valor['RSSI']).min()
+                RSSImax = pd.to_numeric(valor['RSSI']).max()
+                
+
+                
+                print("RSSImi: ", RSSImi)
+                print("RSSImax: ", RSSImax)
+
+
+                print(sum(pd.to_numeric(valor.loc[(valor['SF'] == i) & (valor['BW'] == j) & (valor['PT'] == k), 'SNR']))/PDR)
+                SNRva = sum(pd.to_numeric(valor.loc[(valor['SF'] == i) & (valor['BW'] == j) & (valor['PT'] == k), 'SNR'])+20)
+                SNRmi = pd.to_numeric(valor['SNR']).min()+20
+                SNRmax = pd.to_numeric(valor['SNR']).max()+20
+
+                
+                print("SNRmi: ", SNRmi)
+                print("SNRmax: ", SNRmax)
+                
+                '''
+                #print("Eh a soma ", soma)
+                #print(alcir)
+                mediaRSSI = somaRSSI/ PDR
+
+                
+                dados = pd.to_numeric(valor.loc[(valor['SF'] == i) & (valor['BW'] == j) & (valor['PT'] == k), 'SNR'])
+                dados = dados+20
+                
+                somaSNR = sum(dados)
+
+                mediaSNR = somaSNR/ PDR
+                '''
+
+                
+                RSSIva = RSSIva/ PDR
+                SNRva = SNRva/PDR
+
+
                     
-                    new_row = {'Hora': None, 'RSSI': None, 'SNR': None,'SF': i, 'BW': j, 'PT': k, 'PRD': 0}
-                    valor = pd.concat([valor, pd.DataFrame([new_row])], ignore_index=True)
-                    NewDf = valor.loc[(valor['SF'] == i) & (valor['BW'] == j) & (valor['PT'] == k)]
-                    #print("Tratou a parada!!!   ", len(NewDf))
-                    PDR = len(NewDf)
-                    valor.loc[(valor['SF'] == i) & (valor['BW'] == j) & (valor['PT'] == k), 'PRD'] = PDR
-                    valor.loc[(valor['SF'] == i) & (valor['BW'] == j) & (valor['PT'] == k), 'R'] = 0
-                    
-                    print(i, j, k, w)
-                else:
-                    print(i, j, k, w)
-                    #print("Não tratou a parada!!!   ", len(NewDf))
-                    PDR = len(NewDf)
-                    print("PDR: ",PDR)
-                    valor.loc[(valor['SF'] == i) & (valor['BW'] == j) & (valor['PT'] == k), 'PRD'] = PDR
+                    #print(PDR)
+                print("RSSIva: ", RSSIva)
+                print("SNRva: ", SNRva)
+                PDR = PDR/120
 
+                print("PDR porc: ",PDR)
 
-                    RSSIva = sum(pd.to_numeric(valor.loc[(valor['SF'] == i) & (valor['BW'] == j) & (valor['PT'] == k), 'RSSI']))
-                    RSSImi = pd.to_numeric(valor.loc[(valor['SF'] == i) & (valor['BW'] == j) & (valor['PT'] == k), 'RSSI']).min()
-                    RSSImax = pd.to_numeric(valor.loc[(valor['SF'] == i) & (valor['BW'] == j) & (valor['PT'] == k), 'RSSI']).max()
-                    
+                RSSInorm = (RSSIva - RSSImi)/ (RSSImax - RSSImi)
+                SNRnorm = (SNRva - SNRmi)/ (SNRmax - SNRmi)
+                print("RSSInorm: ", RSSInorm)
+                print("SNRnorm: ", SNRnorm)
 
-                    
-                    print("RSSImi: ", RSSImi)
-                    print("RSSImax: ", RSSImax)
+                valor.loc[(valor['SF'] == i) & (valor['BW'] == j) & (valor['PT'] == k), 'RSSInormalizado'] = RSSInorm
+                valor.loc[(valor['SF'] == i) & (valor['BW'] == j) & (valor['PT'] == k), 'SNRnormalizado'] = SNRnorm
 
+                valorR = 0.2*((-1)*RSSInorm)+0.2*SNRnorm+0.6*PDR
 
-
-                    SNRva = sum(pd.to_numeric(valor.loc[(valor['SF'] == i) & (valor['BW'] == j) & (valor['PT'] == k), 'SNR']))
-                    SNRmi = pd.to_numeric(valor.loc[(valor['SF'] == i) & (valor['BW'] == j) & (valor['PT'] == k), 'SNR']).min()
-                    SNRmax = pd.to_numeric(valor.loc[(valor['SF'] == i) & (valor['BW'] == j) & (valor['PT'] == k), 'SNR']).max()
-
-                    
-                    print("SNRmi: ", SNRmi)
-                    print("SNRmax: ", SNRmax)
-                    
-                    '''
-                    #print("Eh a soma ", soma)
-                    #print(alcir)
-                    mediaRSSI = somaRSSI/ PDR
-
-                    
-                    dados = pd.to_numeric(valor.loc[(valor['SF'] == i) & (valor['BW'] == j) & (valor['PT'] == k), 'SNR'])
-                    dados = dados+20
-                    
-                    somaSNR = sum(dados)
-
-                    mediaSNR = somaSNR/ PDR
-                    '''
-
-                    
-                    RSSIva = RSSIva/ PDR
-                    SNRva = SNRva/PDR
-
-
-                        
-                        #print(PDR)
-                    print("RSSIva: ", RSSIva)
-                    print("SNRva: ", SNRva)
-                    PDR = PDR/120
-
-                    print("PDR porc: ",PDR)
-
-                    RSSInorm = (RSSIva - RSSImi)/ (RSSImax - RSSImi)
-                    SNRnorm = (SNRva - SNRmi)/ (SNRmax - SNRmi)
-                    print("RSSInorm: ", RSSInorm)
-                    print("SNRnorm: ", SNRnorm)
-
-                    valor.loc[(valor['SF'] == i) & (valor['BW'] == j) & (valor['PT'] == k), 'RSSInormalizado'] = RSSInorm
-                    valor.loc[(valor['SF'] == i) & (valor['BW'] == j) & (valor['PT'] == k), 'SNRnormalizado'] = SNRnorm
-
-                    valorR = 0.6*RSSInorm+0.2*SNRnorm+0.2*PDR
-
-                    print("valor do R ", valorR)
-                    #print(i, j, k)
-                    valor.loc[(valor['SF'] == i) & (valor['BW'] == j) & (valor['PT'] == k), 'R'] = valorR
-                    alcir.append(valor.loc[(valor['SF'] == i) & (valor['BW'] == j) & (valor['PT'] == k), 'R'].iloc[0])
+                print("valor do R ", valorR)
+                #print(i, j, k)
+                valor.loc[(valor['SF'] == i) & (valor['BW'] == j) & (valor['PT'] == k), 'R'] = valorR
+                alcir.append(valorR)
 
 # Separar os recursos e o alvo
 X = valor[['SF', 'BW', 'PT']]
@@ -244,9 +243,10 @@ plt.xlabel('Concatenation (SF, BW, PT)')
 plt.ylabel('R')
 
 
-
 plt.xticks(rotation=90)  # Rotacionar os rótulos
 plt.show()
+
+print(alcir)
 
 #print(valor.head())
 
