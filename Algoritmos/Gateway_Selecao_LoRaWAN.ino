@@ -50,6 +50,7 @@ String* Parser(String msg_read){
         cont++;
       }
     }
+    
     return valores;
 }
 
@@ -65,13 +66,15 @@ void changeParam(int SF, float BW, int PT){
 
 //Função de inicialização de transmissão
 void Receiver_HandShake(){
-  
+  /*
   Heltec.display->clear();
   Heltec.display->setTextAlignment(TEXT_ALIGN_LEFT);
   Heltec.display->setFont(ArialMT_Plain_16);
   
   Heltec.display->drawString(30, 5, "HandShake");
   Heltec.display->display();
+  */
+  
   unsigned long period = 5000; // Tempo de espera em milissegundos
   int state = 0;
   String msg_sync = "SYNC_HAND";
@@ -111,13 +114,14 @@ void Receiver_SendPacket(int SF, float BW,  int PT){
   bool loop = true;
 
   //Serial.println("Começando recebimento de pacote");
+  /*
     Heltec.display->clear();
   Heltec.display->setTextAlignment(TEXT_ALIGN_LEFT);
   Heltec.display->setFont(ArialMT_Plain_16);
   
   Heltec.display->drawString(30, 5, "Send Packet");
   Heltec.display->display();
-  
+  */
   currentMillis = millis();
   startMillis = currentMillis;
   while(loop){
@@ -136,24 +140,25 @@ void Receiver_SendPacket(int SF, float BW,  int PT){
       //Serial.print("Mensagem recebida: ");
       //Serial.println(str_read);
       
-      Serial.print(String(SF)+";"+String(BW)+";"+String(PT));
-      Serial.print(";"+String(radio.getRSSI()));
-      Serial.println(";"+String(radio.getSNR()));
+      //Serial.print(String(SF)+";"+String(BW)+";"+String(PT));
+      //Serial.print(";"+String(radio.getRSSI()));
+      //Serial.println(";"+String(radio.getSNR()));
       startMillis = currentMillis;
+      /*
         Heltec.display->clear();
       Heltec.display->setTextAlignment(TEXT_ALIGN_LEFT);
       Heltec.display->setFont(ArialMT_Plain_16);
       
       Heltec.display->drawString(30, 5, "Packet Receiver");
       Heltec.display->display();  
-      
+      */
     }
     if(currentMillis - startMillis >= period){
        startMillis = currentMillis;   
-       Serial.println("SEMPACTRC");
+       //Serial.println("SEMPACTRC");
        loop = false;
     }
-      Heltec.display->clear();    
+     // Heltec.display->clear();    
   }
   //Serial.println("Terminou recebimento de pacote");
 }
@@ -200,7 +205,7 @@ int verificaParam(float vetor_RSSI[],float vetor_SNR[],int contador_perda){
   float SNRmargin = maiorSNR - dr - margin;
 
   int Nstep = SNRmargin/2.5;
-  Serial.println("Nstep: "+String(Nstep));
+  //Serial.println("Nstep: "+String(Nstep));
   
   //Algoritmo LoRaWAN
   
@@ -211,9 +216,9 @@ int verificaParam(float vetor_RSSI[],float vetor_SNR[],int contador_perda){
      if(Nstep > 0){
       posicao_vetor--;
       if(posicao_vetor < 0){
-        Serial.println("SF: "+String(valor_SF));
-        Serial.println("PT: "+String(valor_PT));
-        Serial.println("return 01");
+        //Serial.println("SF: "+String(valor_SF));
+        //Serial.println("PT: "+String(valor_PT));
+        //Serial.println("return 01");
         return 0;
       }
       if(valor_SF == 7){
@@ -230,16 +235,16 @@ int verificaParam(float vetor_RSSI[],float vetor_SNR[],int contador_perda){
       }else{
         //Serial.println("SF: "+String(valor_SF));
         //Serial.println("PT: "+String(valor_PT));
-        Serial.println("return 02");
+        //Serial.println("return 02");
         return 0;
       }
     }
-    Serial.println("STEP: "+String(Nstep));
-    Serial.println("posVetor: "+String(posicao_vetor));
+    //Serial.println("STEP: "+String(Nstep));
+    //Serial.println("posVetor: "+String(posicao_vetor));
   }
-  Serial.println("SF: "+String(valor_SF));
-  Serial.println("PT: "+String(valor_PT));
-  Serial.println("return 03");
+  //Serial.println("SF: "+String(valor_SF));
+  //Serial.println("PT: "+String(valor_PT));
+  //Serial.println("return 03");
   return 1;
 }
 
@@ -247,7 +252,9 @@ void setup() {
 
   Serial.begin(115200);
   while(!Serial);
-  Heltec.begin(true /*Habilita o Display*/, false /*Heltec.Heltec.Heltec.LoRa Disable*/, true /*Habilita debug Serial*/, true /*Habilita o PABOOST*/, BAND /*Frequência BAND*/);
+  //Heltec.begin(true /*Habilita o Display*/, false /*Heltec.Heltec.Heltec.LoRa Disable*/, true /*Habilita debug Serial*/, true /*Habilita o PABOOST*/, BAND /*Frequência BAND*/);
+  
+  /*
   Heltec.display->init();
   Heltec.display->flipScreenVertically();  
   Heltec.display->setFont(ArialMT_Plain_16);
@@ -255,7 +262,7 @@ void setup() {
   Heltec.display->drawString(33, 5, "Iniciado");
   Heltec.display->drawString(10, 30, "com Sucesso!");
   Heltec.display->display();
-
+  */
   int state = radio.begin();
   if (state == RADIOLIB_ERR_NONE) {
   } else {
@@ -272,39 +279,45 @@ void loop() {
 
   String str_read;
   int contador = 0;
-  unsigned long periodo = 15000*20;
+  unsigned long period = 1000*20;
   
   float vetor_RSSI[20];
   float vetor_SNR[20];
 
   int v_Verifica;
-  
+  /*
   Heltec.display->clear();
   Heltec.display->setTextAlignment(TEXT_ALIGN_LEFT);
   Heltec.display->setFont(ArialMT_Plain_16);
   Heltec.display->drawString(30, 5, "Recebimento TRC");
   Heltec.display->display();
-
-  while(true){
-    int state = radio.receive(str_read);
-
-    if(currentMillis-startMillis >= periodo){
-      break;
+  */
+  Serial.println("COM_VER");
+  float startMillis = millis();
+  float currentMillis = 0;
+  while(currentMillis - startMillis <= period){
+    currentMillis = millis();
+    while(true){
+      int state = radio.receive(str_read);
+  
+      if(currentMillis-startMillis >= period){
+        break;
+      }
+      if(state == RADIOLIB_ERR_NONE && str_read.equals("TERM")){
+        //Serial.println("Recebeu TERM");
+        break;
+      }
+      if(state == RADIOLIB_ERR_NONE){
+      
+        vetor_RSSI[contador] = radio.getRSSI();
+        vetor_SNR[contador] = radio.getSNR();
+        contador++;
+        //Serial.println(str_read);
+       
+      }
+          
     }
-    if(state == RADIOLIB_ERR_NONE && str_read.equals("TERM")){
-      Serial.println("Recebeu TERM");
-      break;
-    }
-    if(state == RADIOLIB_ERR_NONE){
-    
-      vetor_RSSI[contador] = radio.getRSSI();
-      vetor_SNR[contador] = radio.getSNR();
-      contador++;
-      Serial.println(str_read);
-     
-    }
-        
-  }
+   }
 
   SetDefaultParam();
   
@@ -323,18 +336,61 @@ void loop() {
     Serial.println(msg_ult);
     String* valores = Parser(msg_ult);
     changeParam(valores[0].toInt(),valores[1].toFloat(),valores[2].toInt());
+    Serial.println("TERM_VER");
+    Serial.print("PARM_IDEAIS: ");
+    Serial.println(msg_ult);
+    String valor;
+    while(true){
+      int state = radio.receive(valor);
+  
+      if(currentMillis-startMillis >= period){
+        break;
+      }
+      if(state == RADIOLIB_ERR_NONE && valor.equals("TERM")){
+        //Serial.println("Recebeu TERM");
+        break;
+      }
+      if(state == RADIOLIB_ERR_NONE){
+      
+        Serial.println(valor);
+       
+      }
+          
+    }
     while(true){}
   }
 
-  String param_atual = String(getSF())+"/"+String(getBW())+"/"+String(getPT());
-  
-  String msg_volta = "OK_";
-  msg_volta += param_atual; 
+  String param_atual = String(getSF())+"/"+String(getBW())+"/"+String(getPT())+"/";
+  String valor;
+  String msg_volta = param_atual;
+  //msg_volta += param_atual; 
   radio.transmit(msg_volta);
-  Serial.print("Parametros ideais: ");
-  Serial.println(param_atual);
+  //Serial.print("Parametros ideais: ");
+  //Serial.println(param_atual);
   String* valores = Parser(param_atual);
   changeParam(valores[0].toInt(),valores[1].toFloat(),valores[2].toInt());
+  Serial.println("TERM_VER");
+  Serial.print("PARM_IDEAIS: ");
+  Serial.println(param_atual);
+  while(true){
+      int state = radio.receive(valor);
+  
+      if(currentMillis-startMillis >= period){
+        break;
+      }
+      if(state == RADIOLIB_ERR_NONE && valor.equals("TERM")){
+        //Serial.println("Recebeu TERM");
+        break;
+      }
+      if(state == RADIOLIB_ERR_NONE){
+      
+        
+        Serial.println(valor);
+       
+      }
+          
+  }
+  radio.transmit("TRC_OK");
   while(true){}
   
 }

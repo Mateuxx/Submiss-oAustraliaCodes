@@ -22,9 +22,9 @@ float valor_BW = 125.00;
 int valor_PT = 20;
 
 int inicio = 0;
-int fim = 108;
+int fim = 107;
 
-String msg_ult;
+String msg_ult = "12/125.00/20/";
 
 struct params_pacote{
   int SF_v;
@@ -34,16 +34,8 @@ struct params_pacote{
 };
 
 params_pacote vetor_Parametros[108];
-float vetor_R[108] = {90.53571428571428, 91.30515463917526, 90.7471153846154, 91.51543209876543, 88.75492957746478, 92.43184523809525, 84.43483606557376, 82.44292452830189, 80.26467391304348, 
-                      79.88055555555556, 77.67171052631579, 79.03035714285714, 0, 0, 0, 0, 0, 0, 97.0938775510204, 97.38535353535353, 97.53647959183672, 97.97325000000001, 96.81342105263158, 
-                      96.60394736842106, 86.673046875, 87.09115384615384, 87.11628787878787, 87.56029411764706, 91.88456790123456, 85.47796610169492, 0, 65.625, 0, 0, 0, 0, 98.2451530612245, 
-                      98.988, 99.16125000000001, 99.01025, 99.22925000000001, 99.14, 92.80709876543209, 94.2311046511628, 96.09408602150538, 91.59512987012987, 89.01176470588234, 91.89711538461538, 
-                      0, 0, 67.25, 0, 0, 0, 99.34925, 99.0455, 99.23325, 99.31524999999999, 99.19125, 99.03275, 98.74225, 98.7625, 98.69675000000001, 98.7425, 98.55325, 98.5915, 82.68849999999999, 
-                      85.30583333333333, 89.75067567567568, 80.29107142857143, 87.82720588235296, 86.0165322580645, 91.09183673469389, 93.53698979591837, 91.22175, 91.8785, 91.58600000000001, 
-                      91.327, 90.34100000000001, 90.6985, 90.1965, 90.15858585858585, 90.16900000000001, 90.319, 89.1785, 88.964, 89.26489898989898, 89.281, 89.5345, 89.1235, 90.29848484848485, 
-                      90.85883838383839, 90.66377551020409, 90.63341836734693, 91.63575, 91.202, 90.8445, 91.44675000000001, 91.69375, 92.33225, 91.8935, 91.9345, 89.47368421052632, 91.23826530612246, 
-                      89.94922680412371, 90.13005319148937, 90.44336734693877, 88.93376288659793};
-                      
+float vetor_R[108] = {0.5970420957703396, 0.5973553304138925, 0.516460507867269, 0.5303664787693307, 0.48100427941660706, 0.5457165800475018, 0.4121464841469779, 0.3729636846614985, 0.3316721588767846, 0.3310470986231496, 0.28573231172382363, 0.3164234968962133, 0.05877853600618842, 0.06355987239375645, 0.0590231945935249, 0.059612653886053885, 0.05873656026816497, 0.056507048925720935, 0.61966439635179, 0.6243320108036379, 0.6196131259860613, 0.6293888382514906, 0.6050230345121389, 0.6045609572449733, 0.4324140746648437, 0.4379966691017298, 0.44146482216999505, 0.4519283872103742, 0.5179778888792377, 0.40750593106551497, 0.06898541642930382, 0.07700203996375812, 0.06832402871140479, 0.0684732824427481, 0.06442007519653636, 0.06872906460066082, 0.621650616113378, 0.6313909460331929, 0.6322362424518628, 0.6320480612206145, 0.6327250199384756, 0.6328525312369451, 0.5198471985172769, 0.5442496146661191, 0.5796339840351037, 0.4997568210728837, 0.4537057598889659, 0.5049506014095281, 0.07606585393642475, 0.07218468725076903, 0.08344505784747323, 0.07369260567392046, 0.07682351600774744, 0.07607382932664918, 0.6376796361702937, 0.6372614029091185, 0.6373336561467471, 0.6378602217918043, 0.6372164938665451, 0.6369684972086135, 0.6207163609433748, 0.6211364931069843, 0.620044339371843, 0.6211309862899244, 0.6201948273897687, 0.6203478789259809, 0.3417521444033921, 0.39332872849492995, 0.46334588225027207, 0.30115871026546653, 0.4325711052647932, 0.402874808604529, 0.6097046208986121, 0.61811711271563, 0.6171116744521666, 0.6212789107895637, 0.6205516311571911, 0.6196963655007406, 0.5957785499981011, 0.5958630511564316, 0.5943429797577, 0.5908395845520618, 0.5949098021343663, 0.5956591090349778, 0.5660086969731495, 0.5655401427974631, 0.5627657322470973, 0.5668037674224298, 0.5673510311040219, 0.5664539895940146, 0.5997272138888596, 0.604150635302543, 0.6000123010256004, 0.5996566913137765, 0.6123596711100984, 0.6110145835706962, 0.598875280088109, 0.6030679617181269, 0.6041892636056359, 0.60368871292393, 0.6038016026736546, 0.6046287645740761, 0.5496362776228383, 0.5698937129593332, 0.555498658327211, 0.5431381547306364, 0.5649022387094158, 0.5556548486769518};
+
 void bubbleSort(params_pacote arr[], int n) {
   for (int i = 0; i < n-1; i++) {
     for (int j = 0; j < n-i-1; j++) {
@@ -115,13 +107,15 @@ void changeParam(int SF, float BW, int PT){
 
 //Função de inicialização de transmissão
 void Receiver_HandShake(){
-  Serial.println("Comecando Handshake");
+  //Serial.println("Comecando Handshake");
+  /*
   Heltec.display->clear();
   Heltec.display->setTextAlignment(TEXT_ALIGN_LEFT);
   Heltec.display->setFont(ArialMT_Plain_16);
   
   Heltec.display->drawString(30, 5, "HandShake");
   Heltec.display->display();
+  */
   unsigned long period = 5000; // Tempo de espera em milissegundos
   int state = 0;
   String msg_sync = "SYNC_HAND";
@@ -150,7 +144,7 @@ void Receiver_HandShake(){
       }
     }
   }
-  Serial.println("Terminou Handshake");
+  //Serial.println("Terminou Handshake");
 }
 
 //Função de recebimento de pacote
@@ -162,13 +156,14 @@ void Receiver_SendPacket(int SF, float BW,  int PT){
   bool loop = true;
 
   //Serial.println("Começando recebimento de pacote");
+  /*
     Heltec.display->clear();
   Heltec.display->setTextAlignment(TEXT_ALIGN_LEFT);
   Heltec.display->setFont(ArialMT_Plain_16);
   
   Heltec.display->drawString(30, 5, "Send Packet");
   Heltec.display->display();
-  
+  */
   currentMillis = millis();
   startMillis = currentMillis;
   while(loop){
@@ -191,22 +186,23 @@ void Receiver_SendPacket(int SF, float BW,  int PT){
       Serial.print(";"+String(radio.getRSSI()));
       Serial.println(";"+String(radio.getSNR()));
       startMillis = currentMillis;
+      /*
         Heltec.display->clear();
       Heltec.display->setTextAlignment(TEXT_ALIGN_LEFT);
       Heltec.display->setFont(ArialMT_Plain_16);
       
       Heltec.display->drawString(30, 5, "Packet Receiver");
       Heltec.display->display();  
-      
+      */
     }
     if(currentMillis - startMillis >= period){
        startMillis = currentMillis;   
        Serial.println("SEMPACTRC");
        loop = false;
     }
-      Heltec.display->clear();    
+      //Heltec.display->clear();    
   }
-  Serial.println("Terminou recebimento de pacote");
+  //Serial.println("Terminou recebimento de pacote");
 }
 
 int getSF(){
@@ -221,6 +217,31 @@ int getPT(){
   return valor_PT;
 }
 
+// Função para encontrar o valor máximo em um vetor
+float encontraMaximo(float vetor[], int tamanho) {
+    float maximo = vetor[0];  // Inicializa o máximo com o primeiro elemento do vetor
+
+    for (int i = 1; i < tamanho; i++) {
+        if (vetor[i] > maximo) {
+            maximo = vetor[i];
+        }
+    }
+
+    return maximo;
+}
+
+// Função para encontrar o valor mínimo em um vetor
+float encontraMinimo(float vetor[], int tamanho) {
+    float minimo = vetor[0];  // Inicializa o mínimo com o primeiro elemento do vetor
+
+    for (int i = 1; i < tamanho; i++) {
+        if (vetor[i] < minimo) {
+            minimo = vetor[i];
+        }
+    }
+
+    return minimo;
+}
 
 //Implementação dos algoritmos
 int verificaParam(float vetor_RSSI[],float vetor_SNR[],int contador_perda){
@@ -232,46 +253,63 @@ int verificaParam(float vetor_RSSI[],float vetor_SNR[],int contador_perda){
     somaRSSI+= vetor_RSSI[i];
     somaSNR+= vetor_SNR[i]+20;
   }
-  float mediaRSSI = (somaRSSI/tamanho)*-1;
+  float mediaRSSI = (somaRSSI/tamanho);
   float mediaSNR = somaSNR/tamanho;
+
+  int RSSImi = encontraMinimo(vetor_RSSI,20);
+  int RSSImax = encontraMaximo(vetor_RSSI,20);
+
+  int SNRmi = encontraMinimo(vetor_SNR,20);
+  int SNRmax = encontraMaximo(vetor_SNR,20);
+
+  float RSSInorm = (mediaRSSI - RSSImi)/ (RSSImax - RSSImi);
+  float SNRnorm = (mediaSNR - SNRmi)/ (SNRmax - SNRmi);
+  
   float porcCt = (contador_perda*100)/20;
-  int R = 0.5*mediaRSSI+0.2*mediaSNR+0.3*porcCt;
-  Serial.print("Valor do R: ");
-  Serial.println(R);
+  porcCt = porcCt/100;
+  
+  float R = 0.2*((-1)*RSSInorm)+0.2*SNRnorm+0.6*porcCt;
+  //Serial.println("RSSI: "+String(mediaRSSI));
+  //Serial.println("SNR: "+String(mediaSNR));
+  //Serial.println("R atual: "+String(R));
+  
+  //Serial.print("R: ");
+  //Serial.println(R);
   int j;
   
   for(int i = 0; i< 108;i++){
     if(vetor_Parametros[i].SF_v == valor_SF && vetor_Parametros[i].BW_v == valor_BW && vetor_Parametros[i].PT_v == valor_PT){
-      Serial.println("Valor do R do dataBase: "+String(vetor_Parametros[i].R_v));
+      //Serial.println("Valor do R do dataBase: "+String(vetor_Parametros[i].R_v));
       j = i;
     }
   }
   
   while(inicio<=fim){
-    int intervalo_ideal = R - vetor_Parametros[j].R_v;
-    if(intervalo_ideal < 5 && intervalo_ideal > -5){
-      Serial.println("0");
+    float intervalo_ideal = R - vetor_Parametros[j].R_v;
+    if(intervalo_ideal < 0.1 && intervalo_ideal > -0.1){
+      //Serial.println("0");
       return 0;
     }
-    if(intervalo_ideal > 5){
+    if(intervalo_ideal < 0){
       inicio = j + 1;
-      int meio = (inicio+fim)/2;
+      int meio =  (int)(inicio+fim)/2;
       valor_SF = vetor_Parametros[meio].SF_v;
       valor_BW = vetor_Parametros[meio].BW_v;
       valor_PT = vetor_Parametros[meio].PT_v;
-      Serial.println("+5");
+      Serial.println("Direita");
       return 1;    
     }else{
       fim = j-1;
-      int meio = (inicio+fim)/2;
+      int meio = (int)(inicio+fim)/2;
       valor_SF = vetor_Parametros[meio].SF_v;
       valor_BW = vetor_Parametros[meio].BW_v;
       valor_PT = vetor_Parametros[meio].PT_v;
-      Serial.println("-5");
+      Serial.println("Esquerda");
       return 1;       
     }
     
   }
+  //Serial.println("faz algo");
   return 0;
 }
 
@@ -279,7 +317,10 @@ void setup() {
 
   Serial.begin(115200);
   while(!Serial);
-  Heltec.begin(true /*Habilita o Display*/, false /*Heltec.Heltec.Heltec.LoRa Disable*/, true /*Habilita debug Serial*/, true /*Habilita o PABOOST*/, BAND /*Frequência BAND*/);
+  
+  
+  //Heltec.begin(true /*Habilita o Display*/, false /*Heltec.Heltec.Heltec.LoRa Disable*/, true /*Habilita debug Serial*/, true /*Habilita o PABOOST*/, BAND /*Frequência BAND*/);
+  /*
   Heltec.display->init();
   Heltec.display->flipScreenVertically();  
   Heltec.display->setFont(ArialMT_Plain_16);
@@ -287,6 +328,8 @@ void setup() {
   Heltec.display->drawString(33, 5, "Iniciado");
   Heltec.display->drawString(10, 30, "com Sucesso!");
   Heltec.display->display();
+
+  */
 
   int state = radio.begin();
   if (state == RADIOLIB_ERR_NONE) {
@@ -299,44 +342,51 @@ void setup() {
   SetDefaultParam();
   Receiver_HandShake();
   set_Params();
+  Serial.println("COM_VER");
 }
 
 void loop() {
 
   String str_read;
   int contador = 0;
-  unsigned long periodo = 15000*20;
+  unsigned long period = 1000*20;
   
   float vetor_RSSI[20];
   float vetor_SNR[20];
 
   int v_Verifica;
-  
+  /*
   Heltec.display->clear();
   Heltec.display->setTextAlignment(TEXT_ALIGN_LEFT);
   Heltec.display->setFont(ArialMT_Plain_16);
   Heltec.display->drawString(30, 5, "Recebimento TRC");
   Heltec.display->display();
-
-  while(true){
-    int state = radio.receive(str_read);
-
-    if(currentMillis-startMillis >= periodo){
-      break;
+  */
+  float startMillis = millis();
+  float currentMillis = 0;
+  
+  while(currentMillis - startMillis <= period){
+    currentMillis = millis();
+    while(true){
+      int state = radio.receive(str_read);
+  
+      if(currentMillis-startMillis >= period){
+        break;
+      }
+      if(state == RADIOLIB_ERR_NONE && str_read.equals("TERM")){
+        //Serial.println("Recebeu TERM");
+        break;
+      }
+      if(state == RADIOLIB_ERR_NONE){
+      
+        vetor_RSSI[contador] = radio.getRSSI();
+        vetor_SNR[contador] = radio.getSNR();
+        contador++;
+        Serial.println(str_read);
+       
+      }
+          
     }
-    if(state == RADIOLIB_ERR_NONE && str_read.equals("TERM")){
-      Serial.println("Recebeu TERM");
-      break;
-    }
-    if(state == RADIOLIB_ERR_NONE){
-    
-      vetor_RSSI[contador] = radio.getRSSI();
-      vetor_SNR[contador] = radio.getSNR();
-      contador++;
-      Serial.println(str_read);
-     
-    }
-        
   }
 
   SetDefaultParam();
@@ -352,26 +402,68 @@ void loop() {
     
     msg_volta += msg_ult; 
     radio.transmit(msg_volta);
-    Serial.print("Parametros ideais: ");
-    Serial.println(msg_ult);
     String* valores = Parser(msg_ult);
     changeParam(valores[0].toInt(),valores[1].toFloat(),valores[2].toInt());
+    Serial.println("TERM_VER");
+    Serial.print("PARM_IDEAIS: ");
+    Serial.println(msg_ult);
+    String valor;
+    while(true){
+      int state = radio.receive(valor);
+  
+      if(currentMillis-startMillis >= period){
+        break;
+      }
+      if(state == RADIOLIB_ERR_NONE && str_read.equals("TERM")){
+        //Serial.println("Recebeu TERM");
+        break;
+      }
+      if(state == RADIOLIB_ERR_NONE){
+      
+        Serial.println(valor);
+       
+      }
+          
+    }
     while(true){}
   }
 
-  String param_atual = String(getSF())+"/"+String(getBW())+"/"+String(getPT());
+  String param_atual = String(getSF())+"/"+String(getBW())+"/"+String(getPT())+"/";
   
-
-  if(v_Verifica == 1){
-    Serial.print("Trocando para os parâmetros");
+  Serial.print("Trocando para os parâmetros");
     Serial.println(param_atual);
+  if(v_Verifica == 1){
+    
     radio.transmit(param_atual);
     String* valores = Parser(param_atual);
     changeParam(valores[0].toInt(),valores[1].toFloat(),valores[2].toInt());
+    
   }else{
-    Serial.print("Parametros ideais: ");
-    Serial.println(param_atual);
+    
     radio.transmit("TRC_OK");
+    Serial.println("TERM_VER");
+    Serial.print("PARM_IDEAIS: ");
+    Serial.println(param_atual);
+    String valor;
+    startMillis = millis();
+    while(true){
+      currentMillis = millis();
+      int state = radio.receive(valor);
+      
+      if(currentMillis-startMillis >= period){
+        break;
+      }
+      if(state == RADIOLIB_ERR_NONE && valor.equals("TERM")){
+        //Serial.println("Recebeu TERM");
+        break;
+      }
+      if(state == RADIOLIB_ERR_NONE){
+      
+        Serial.println(valor);
+       
+      }
+          
+    }
     while(true);
   }
   
