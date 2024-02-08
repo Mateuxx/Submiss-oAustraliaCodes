@@ -1,0 +1,48 @@
+17:14:08,439;root;INFO;COM_VER
+
+
+17:14:09,575;root;INFO;Pacote 1
+
+
+17:14:13,702;root;INFO;Pacote 2
+
+
+17:14:20,616;root;INFO;-118.00;25.25
+
+
+17:14:20,617;root;INFO;RSSI1: 1.00
+
+
+17:14:20,618;root;INFO;SNR1: 1.01
+
+
+17:14:20,619;root;INFO;PORC : 1.00
+
+
+17:14:20,619;root;INFO;RSSI2: 1.00
+
+
+17:14:20,620;root;INFO;SNR2: 1.00
+
+
+17:14:20,620;root;INFO;R atual: 1.00
+
+
+17:14:20,621;root;INFO;R do dataBase: 0.91
+
+
+17:14:20,622;root;INFO;Trocando para os parâmetros12/125.00/20/
+
+
+17:14:21,741;root;INFO;TERM_VER
+
+
+17:14:21,742;root;INFO;PARM_IDEAIS: 12/125.00/20/
+
+
+17:14:22,925;root;INFO;Pacote 1
+
+
+17:14:27,54;root;INFO;Pacote 2
+
+

@@ -1,0 +1,324 @@
+19:04:46,579;root;INFO;COM_VER
+
+
+19:04:47,715;root;INFO;Pacote 1
+
+
+19:04:51,843;root;INFO;Pacote 2
+
+
+19:04:55,974;root;INFO;Pacote 3
+
+
+19:05:00,103;root;INFO;Pacote 4
+
+
+19:05:04,234;root;INFO;Pacote 5
+
+
+19:05:08,363;root;INFO;Pacote 6
+
+
+19:05:12,494;root;INFO;Pacote 7
+
+
+19:05:16,623;root;INFO;Pacote 8
+
+
+19:05:23,542;root;INFO;-123.25;18.75
+
+
+19:05:23,543;root;INFO;RSSI1: 0.43
+
+
+19:05:23,543;root;INFO;SNR1: 0.55
+
+
+19:05:23,544;root;INFO;PORC : 1.00
+
+
+19:05:23,544;root;INFO;RSSI2: 0.43
+
+
+19:05:23,545;root;INFO;SNR2: 0.55
+
+
+19:05:23,545;root;INFO;R atual: 0.79
+
+
+19:05:23,546;root;INFO;R do dataBase: 0.91
+
+
+19:05:23,546;root;INFO;Inicio: 97
+
+
+19:05:23,547;root;INFO;Fim: 107
+
+
+19:05:23,547;root;INFO;meio: 102
+
+
+19:05:23,548;root;INFO;Trocando para os parâmetros11/250.00/10/
+
+
+19:05:25,220;root;INFO;Pacote 1
+
+
+19:05:28,506;root;INFO;Pacote 2
+
+
+19:05:31,795;root;INFO;Pacote 3
+
+
+19:05:35,82;root;INFO;Pacote 4
+
+
+19:05:38,371;root;INFO;Pacote 5
+
+
+19:05:41,660;root;INFO;Pacote 6
+
+
+19:05:44,948;root;INFO;Pacote 7
+
+
+19:05:48,235;root;INFO;Pacote 8
+
+
+19:05:54,483;root;INFO;-123.75;16.25
+
+
+19:05:54,484;root;INFO;RSSI1: 0.41
+
+
+19:05:54,484;root;INFO;SNR1: 0.47
+
+
+19:05:54,485;root;INFO;PORC : 1.00
+
+
+19:05:54,486;root;INFO;RSSI2: 0.41
+
+
+19:05:54,486;root;INFO;SNR2: 0.47
+
+
+19:05:54,487;root;INFO;R atual: 0.78
+
+
+19:05:54,488;root;INFO;R do dataBase: 0.91
+
+
+19:05:54,488;root;INFO;Inicio: 103
+
+
+19:05:54,489;root;INFO;Fim: 107
+
+
+19:05:54,489;root;INFO;meio: 105
+
+
+19:05:54,491;root;INFO;Trocando para os parâmetros11/125.00/18/
+
+
+19:05:56,446;root;INFO;Pacote 1
+
+
+19:06:00,15;root;INFO;Pacote 2
+
+
+19:06:03,583;root;INFO;Pacote 3
+
+
+19:06:07,151;root;INFO;Pacote 4
+
+
+19:06:10,719;root;INFO;Pacote 5
+
+
+19:06:14,287;root;INFO;Pacote 6
+
+
+19:06:17,855;root;INFO;Pacote 7
+
+
+19:06:21,423;root;INFO;Pacote 8
+
+
+19:06:27,894;root;INFO;-120.00;22.75
+
+
+19:06:27,895;root;INFO;RSSI1: 0.52
+
+
+19:06:27,895;root;INFO;SNR1: 0.67
+
+
+19:06:27,896;root;INFO;PORC : 1.00
+
+
+19:06:27,896;root;INFO;RSSI2: 0.52
+
+
+19:06:27,896;root;INFO;SNR2: 0.67
+
+
+19:06:27,897;root;INFO;R atual: 0.84
+
+
+19:06:27,898;root;INFO;R do dataBase: 0.92
+
+
+19:06:27,898;root;INFO;Inicio: 106
+
+
+19:06:27,898;root;INFO;Fim: 107
+
+
+19:06:27,899;root;INFO;meio: 106
+
+
+19:06:27,899;root;INFO;Trocando para os parâmetros11/125.00/20/
+
+
+19:06:29,858;root;INFO;Pacote 1
+
+
+19:06:33,426;root;INFO;Pacote 2
+
+
+19:06:36,994;root;INFO;Pacote 3
+
+
+19:06:40,561;root;INFO;Pacote 4
+
+
+19:06:44,131;root;INFO;Pacote 5
+
+
+19:06:47,698;root;INFO;Pacote 6
+
+
+19:06:51,266;root;INFO;Pacote 7
+
+
+19:06:54,834;root;INFO;Pacote 8
+
+
+19:07:01,305;root;INFO;-119.00;23.75
+
+
+19:07:01,306;root;INFO;RSSI1: 0.55
+
+
+19:07:01,306;root;INFO;SNR1: 0.70
+
+
+19:07:01,307;root;INFO;PORC : 1.00
+
+
+19:07:01,307;root;INFO;RSSI2: 0.55
+
+
+19:07:01,308;root;INFO;SNR2: 0.70
+
+
+19:07:01,308;root;INFO;R atual: 0.85
+
+
+19:07:01,309;root;INFO;R do dataBase: 0.93
+
+
+19:07:01,309;root;INFO;Inicio: 107
+
+
+19:07:01,309;root;INFO;Fim: 107
+
+
+19:07:01,310;root;INFO;meio: 107
+
+
+19:07:01,310;root;INFO;Trocando para os parâmetros11/125.00/14/
+
+
+19:07:03,269;root;INFO;Pacote 1
+
+
+19:07:06,838;root;INFO;Pacote 2
+
+
+19:07:10,405;root;INFO;Pacote 3
+
+
+19:07:13,973;root;INFO;Pacote 4
+
+
+19:07:17,541;root;INFO;Pacote 5
+
+
+19:07:21,109;root;INFO;Pacote 6
+
+
+19:07:24,677;root;INFO;Pacote 7
+
+
+19:07:28,245;root;INFO;Pacote 8
+
+
+19:07:34,713;root;INFO;-116.00;26.00
+
+
+19:07:34,714;root;INFO;RSSI1: 0.64
+
+
+19:07:34,714;root;INFO;SNR1: 0.77
+
+
+19:07:34,715;root;INFO;PORC : 1.00
+
+
+19:07:34,715;root;INFO;RSSI2: 0.64
+
+
+19:07:34,716;root;INFO;SNR2: 0.77
+
+
+19:07:34,716;root;INFO;R atual: 0.88
+
+
+19:07:34,717;root;INFO;R do dataBase: 0.93
+
+
+19:07:34,718;root;INFO;Trocando para os parâmetros11/125.00/14/
+
+
+19:07:35,839;root;INFO;TERM_VER
+
+
+19:07:35,840;root;INFO;PARM_IDEAIS: 11/125.00/14/
+
+
+19:07:37,24;root;INFO;Pacote 1
+
+
+19:07:41,154;root;INFO;Pacote 2
+
+
+19:07:45,284;root;INFO;Pacote 3
+
+
+19:07:49,414;root;INFO;Pacote 4
+
+
+19:07:53,545;root;INFO;Pacote 5
+
+
+19:07:57,674;root;INFO;Pacote 6
+
+
+19:08:01,804;root;INFO;Pacote 7
+
+
+19:08:05,933;root;INFO;Pacote 8
+
+

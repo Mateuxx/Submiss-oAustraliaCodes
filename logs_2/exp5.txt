@@ -1,0 +1,72 @@
+18:23:20,379;root;INFO;COM_VER
+
+
+18:27:24,329;root;INFO;COM_VER
+
+
+18:28:52,205;root;INFO;TERM_VER
+
+
+18:28:52,206;root;INFO;PARM_IDEAIS: 10/125.00/20/
+
+
+18:28:52,526;root;INFO;Pacote 1
+
+
+18:28:55,813;root;INFO;Pacote 2
+
+
+18:28:59,102;root;INFO;Pacote 3
+
+
+18:29:02,391;root;INFO;Pacote 4
+
+
+18:29:05,678;root;INFO;Pacote 5
+
+
+18:29:08,966;root;INFO;Pacote 6
+
+
+18:29:12,255;root;INFO;Pacote 7
+
+
+18:29:15,544;root;INFO;Pacote 8
+
+
+18:29:18,831;root;INFO;Pacote 9
+
+
+18:29:22,120;root;INFO;Pacote 10
+
+
+18:29:25,408;root;INFO;Pacote 11
+
+
+18:29:28,696;root;INFO;Pacote 12
+
+
+18:29:31,985;root;INFO;Pacote 13
+
+
+18:29:35,273;root;INFO;Pacote 14
+
+
+18:29:38,562;root;INFO;Pacote 15
+
+
+18:29:41,850;root;INFO;Pacote 16
+
+
+18:29:45,138;root;INFO;Pacote 17
+
+
+18:29:48,426;root;INFO;Pacote 18
+
+
+18:29:51,715;root;INFO;Pacote 19
+
+
+18:29:55,3;root;INFO;Pacote 20
+
+
